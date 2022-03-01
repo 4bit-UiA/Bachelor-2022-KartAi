@@ -154,7 +154,8 @@
     {
       "type": "Feature",
       "properties": {
-        "date": "2020-02-02"
+        "date": "2020-02-02",
+        "dataset": "Matrikkel"
       },
       "geometry": {
         "type": "Point",
