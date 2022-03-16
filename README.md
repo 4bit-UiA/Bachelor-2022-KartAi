@@ -5,6 +5,9 @@ TODO: Give a short introduction of your project. Let this section explain the ob
 1. `pip install shapely`
 2. `pip install geopandas`
 
+3. `pip install area`
+4. `pip install turfpy`
+
 # Build and Test
 TODO: Describe and show how to build your code and run the tests. 
 
