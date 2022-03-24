@@ -1,13 +1,19 @@
 import json
+
+import sys
+sys.path.append('/home/eirik/git/azure/NorkartBachelor')
+
 from src.DB.db_connection import connect_to_db
 import src.eksperiment_johannes.similarity_analysis as sa
+import observasjon
+
 
 # Threshold(s) for å si om tidligere målinger er like
 IOUthreshold = 0.95
 
 if __name__ == "__main__":
     # open connection
-    con = connect_to_db('../DB/database.ini')
+    con = connect_to_db()
 
     # open cursor
     cur = con.cursor()

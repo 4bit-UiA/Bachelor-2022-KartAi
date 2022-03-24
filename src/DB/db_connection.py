@@ -1,4 +1,8 @@
 import psycopg2
+
+import sys
+sys.path.append('/home/eirik/git/azure/NorkartBachelor')
+
 from src.config import config
 
 
