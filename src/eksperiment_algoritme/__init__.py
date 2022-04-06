@@ -1,15 +1,10 @@
 import json
-
-import sys
-sys.path.append('/home/eirik/git/azure/NorkartBachelor')
+from common import config
 
 from src.DB.db_connection import connect_to_db
 import src.eksperiment_johannes.similarity_analysis as sa
-import observasjon
+import observasjon as o
 
-
-# Threshold(s) for å si om tidligere målinger er like
-IOUthreshold = 0.95
 
 if __name__ == "__main__":
     # open connection
@@ -19,33 +14,31 @@ if __name__ == "__main__":
     cur = con.cursor()
 
     # SQL for å hente data fra databasen som GeoJSON
-    getObjects = """ 
-        SELECT id, dato, name, ST_AsGeoJSON(geom), type as geojson
+    getObjects = '''
+        SELECT id, type, dato, st_asgeojson(geom) as geom, name
         FROM observasjon
-        ORDER BY dato desc; 
-        """
+        ORDER BY dato; 
+        '''
 
+    # Kjør SQL og lagre resultatet i observations
     cur.execute(getObjects)
     observations = cur.fetchall()
 
-
-    sisteObservasjon = sa.Observation(observations[0][1],
-                                      None,
-                                      None,
-                                      None,
-                                      None,
-                                      json.loads(observations[0][3]))
+    # Lagre den nyeste observasjonen i sisteObservasjon
+    sisteObservasjon = o.Observation(
+        observations[-1][0],
+        observations[-1][1],
+        observations[-1][2],
+        json.loads(observations[-1][3]))
 
     for row in observations:
-        o = sa.Observation(row[1],
-                           None,
-                           None,
-                           None,
-                           None,
-                           json.loads(row[3]))
-        iou = sa.measure_iou_of_observations(sisteObservasjon, o)
-        enighet = " ENIG" if iou > IOUthreshold else "UENIG"
-        print("Observasjon med navn \"%s\" av type '%s' er %s (IOU: %s)"%(row[2], row[4], enighet, iou))
+        #print(row[3])
+        ob = o.Observation(row[0], row[1], row[2], json.loads(row[3]))
+        enighet = ob.shape.update_comparison(sisteObservasjon)
+
+        #iou = sa.measure_iou_of_observations(sisteObservasjon, o)
+        #enighet = " ENIG" if iou > IOUthreshold else "UENIG"
+        print("Observasjon med navn \"%s\" av type '%s' er %s (BIoU: %s)"%(row[4], row[1], enighet, ob.shape.BIOU))
 
 
     # close cursor
