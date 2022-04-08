@@ -35,8 +35,9 @@ if __name__ == "__main__":
     print(vars(test.shape))
 
 
-def find_reliability(base_reliability):
-    valid_observations = list_of_observations[find_first_congruent():]
+def find_reliability(new_observation, base_reliability):
+    #list_of_observations = SELECT * FROM observations WHERE id = new_observation.ID
+    valid_observations = list_of_observations[find_first_congruent(list_of_observations):]
     next_multiplier = 0.5
     incongruent_observations = 0
     current_reliability = base_reliability
@@ -52,7 +53,7 @@ def find_reliability(base_reliability):
 
 
 
-def find_first_congruent():
+def find_first_congruent(list_of_observations):
     for i in range(len(list_of_observations)):
         if list_of_observations[i].congruent:
             return i
