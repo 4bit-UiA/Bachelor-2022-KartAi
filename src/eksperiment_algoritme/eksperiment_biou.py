@@ -1,6 +1,6 @@
 from shapely.geometry import Polygon
 import matplotlib.pyplot as plt
-import alphashape
+# import alphashape
 from descartes import PolygonPatch
 
 
@@ -65,7 +65,7 @@ def measure_biou(geo1: Polygon, geo2: Polygon):
 
 
 if __name__ == "__main__":
-    measure_biou(geo1, geo5)
+    print(measure_biou(geo1, geo5))
     #fig, ax = plt.subplots()
     #ax.add_patch(PolygonPatch(row1, alpha=0.2))
     #plt.show()

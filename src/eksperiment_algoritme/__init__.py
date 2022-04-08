@@ -2,7 +2,6 @@ import json
 from common import config
 
 from src.DB.db_connection import connect_to_db
-import src.eksperiment_johannes.similarity_analysis as sa
 import observasjon as o
 
 
