@@ -3,7 +3,7 @@ from geojson import FeatureCollection
 from shapely.geometry import Polygon, Point
 from area import area
 from turfpy.transformation import intersect
-from src.eksperiment_johannes.helper_functions import union
+from helper_functions import union
 
 
 class Observation:
@@ -41,8 +41,8 @@ def load_observations_from_file(jsonfile) -> list:
 
 
 def measure_iou_of_observations(observation_1: Observation, observation_2: Observation) -> float:
-    coordinates_1 = observation_1.geojson
-    coordinates_2 = observation_2.geojson
+    coordinates_1 = observation_1.geojson['geometry']
+    coordinates_2 = observation_2.geojson['geometry']
     intersection = intersect([coordinates_1, coordinates_2])
     union_ = union(FeatureCollection([coordinates_1, coordinates_2], properties={"combine": "yes"}))
     area_of_intersection = area(intersection['geometry'])
