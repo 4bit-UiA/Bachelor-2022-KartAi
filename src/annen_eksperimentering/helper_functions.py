@@ -7,7 +7,7 @@ from shapely.ops import unary_union
 
 from turfpy.helper import get_geom
 
-
+# oppdatert union(). union() fra shapely biblioteket er deprecated.
 def union(
         features: Union[List[Feature], FeatureCollection]
 ) -> Union[Feature, FeatureCollection]:

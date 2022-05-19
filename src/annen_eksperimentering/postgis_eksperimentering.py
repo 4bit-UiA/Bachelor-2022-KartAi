@@ -1,5 +1,5 @@
 from src.DB.db_connection import connect_to_db
-from similarity_analysis import load_observations_from_file
+from shapely_eksperimentering import load_observations_from_file
 import geojson
 
 if __name__ == "__main__":
