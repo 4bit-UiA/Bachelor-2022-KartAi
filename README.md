@@ -1,20 +1,20 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Pålitelighetsmål av bygnings-deteksjoner i KartAi 
+Våren 2022 gjennomførte gruppen 4Bit ved UiA et bachelor prosjekt i samarbeid med bedriften Norkart. <br>
+Målet for prosjektet var å finne ut en måte å beregne pålitelighet hos funn av Norkart sitt ai-prosjekt "KartAi". <br>
+Prosjektet ble gjennomført med mye forskning og eksperimentering av forskjellige teknikker og teknologier. <br>
+Eksperimentene vil du finne i dette repositoriet som bistår som et biprodukt til prosjektrapporten.
 
-# Getting Started
-1. `pip install shapely`
-2. `pip install geopandas`
+Les mer her: https://kompetansetorget.uia.no/fullfoerte-oppgaver/paalitelighetsmaal-av-bygnings-deteksjoner-i-kartai
 
-3. `pip install area`
-4. `pip install turfpy`
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# Eksterne biblioteker
+Noen av scriptene i dette repositoriet tar i bruk flere eksterne biblioteker som må være installert for å kjøre dem. 
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+- `shapely`
+- `psycopg2`
+- `area`
+- `turfpy`
+- `numpy`
+- `matplotlib`
+- `descartes`
+- `alphashape`
