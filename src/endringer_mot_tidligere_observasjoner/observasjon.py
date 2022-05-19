@@ -1,5 +1,4 @@
 from common import config, sql_query
-import datetime
 import eksperiment_biou as biou
 from shapely.geometry import Polygon
 from itertools import chain
@@ -23,6 +22,7 @@ class Shape:
         self.congruent = None
         self.area = None  # set with shapely math
 
+    # Denne funksjonen oppdaterer BIOU-verdiene per observasjon.
     def update_comparison(self, new_observation: Observation):
         self.BIOU = biou.measure_biou(self.polygon, new_observation.shape.polygon)
         self.congruent = True if self.BIOU > float(config['iouthreshold']) else False
@@ -179,9 +179,12 @@ def get_latest_observation(geoid: int) -> Observation:
     return Observation(latest_observation[0], latest_observation[1], latest_observation[2], latest_observation[3], latest_observation[4])
 
 
-if __name__ == "__main__":    
-    observation_id = 69
-    print("Measure reliability for observation-id: ", observation_id)
-    print("Reliability: ", round( find_reliability_oldest_agreeing( get_latest_observation(observation_id) ), 4), "(from oldest agreeing observation)")
-    print("Reliability: ", round( find_reliability_st_dev_mean(     get_latest_observation(observation_id) ), 4), "(from standard-deviation on mean)")
-    print("Reliability: ", round( find_reliability_st_dev(          get_latest_observation(observation_id) ), 4), "(from standard-deviation by threshold)")
+if __name__ == "__main__":
+    # I datasettet til resources/observasjon.sql er det lagt inn tre 'bygninger'. geoid 1, 2 og 3
+    geoid = 1
+
+    accuracy = 4
+    print("Measure reliability for observation-id: ", geoid)
+    print("Reliability: ", round(find_reliability_oldest_agreeing(get_latest_observation(geoid)), accuracy), " (from oldest agreeing observation)")
+    print("Reliability: ", round(find_reliability_st_dev_mean(    get_latest_observation(geoid)), accuracy), " (from standard-deviation on mean)")
+    print("Reliability: ", round(find_reliability_st_dev(         get_latest_observation(geoid)), accuracy), " (from standard-deviation by threshold)")

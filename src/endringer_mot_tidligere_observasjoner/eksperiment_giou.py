@@ -20,6 +20,7 @@ def show(ob1, ob2):
     plt.show()
 
 
+## Koden her er ufullstendig siden resultatene ikke fungerte.
 if __name__ == "__main__":
     x1, y1 = geo3.exterior.coords.xy
     x2, y2 = geo4.exterior.coords.xy

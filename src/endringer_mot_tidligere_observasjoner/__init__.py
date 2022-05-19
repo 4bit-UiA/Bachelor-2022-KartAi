@@ -4,6 +4,7 @@ from common import config
 from src.DB.db_connection import connect_to_db
 import observasjon as o
 
+# Denne filen inneholder diverse tester som er kjørt. For de ferdige testene se i observasjon.py
 
 if __name__ == "__main__":
     # open connection
@@ -31,7 +32,6 @@ if __name__ == "__main__":
         json.loads(observations[-1][3]))
 
     for row in observations:
-        #print(row[3])
         ob = o.Observation(row[0], row[1], row[2], json.loads(row[3]))
         enighet = ob.shape.update_comparison(sisteObservasjon)
 
